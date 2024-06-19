@@ -27,6 +27,8 @@ module StateMachine
 
   module StateMachineMethods
     def state_machine(states:, default:)
+      raise ArgumentError, 'Default state is not in list of possible states' unless states.include? default
+
       attr_reader :state
 
       states.each do |state|
