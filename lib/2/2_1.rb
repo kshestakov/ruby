@@ -21,14 +21,12 @@
 #  t.first? # false
 
 module StateMachine
-  # Почему переопределяем метод, вызываемый при include, а не просто extend StateMachine?
   def self.included(extensible_class)
     extensible_class.extend(StateMachineMethods)
   end
 
   module StateMachineMethods
     def state_machine(states:, default:)
-      # надо ли? raise ArgumentError, 'Default state is not in list of possible states' unless states.include? default
       attr_reader :state
 
       states.each do |state|
